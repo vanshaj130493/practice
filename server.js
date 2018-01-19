@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path'); 
 
-var test = require(path.join(__dirname, "resources\\test.js"));
+var test = require(path.join(__dirname, "resources", "test.js"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
