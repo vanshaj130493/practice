@@ -9,12 +9,14 @@ client.connect();
 
 module.exports.executequery= function(req,response){
 
+var output = "";
 client.query("SELECT * from test;", (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
-    res.end(JSON.stringify(row));
+    output = output + (JSON.stringify(row));
   }
   client.end();
+  res.end(output);
 });
 
 }
