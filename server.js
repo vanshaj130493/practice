@@ -16,8 +16,8 @@ app.use(function (req, res, next) {
     next();
     });
 
-app.post("/test",test.execute);
+app.get("/test",test.execute);
 
-app.listen('3000',function(){
+app.listen(process.env.port || 8080,function(){
 	console.log("Server started at port 3000");
 	});
