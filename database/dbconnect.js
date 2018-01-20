@@ -9,8 +9,8 @@ client.connect();
 
 module.exports.executequery= function(req,res){
 
-var output = "";
-client.query("SELECT * from test;", (err, data) => {
+var output = "init";
+client.query("SELECT * from test where id='aaa';", (err, data) => {
   if (err) throw err;
   for (let row of data.rows) {
     output = output + (JSON.stringify(row));
