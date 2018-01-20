@@ -18,6 +18,6 @@ app.use(function (req, res, next) {
 
 app.get("/test",test.execute);
 
-app.listen(process.env.port || 8080,function(){
-	console.log("Server started at port 3000");
+app.listen(process.env.PORT || 8080,function(){
+	console.log("Server started at port"+process.env.PORT || 8080);
 	});
