@@ -16,7 +16,7 @@ client.query("SELECT * from test;", (err, res) => {
     output = output + (JSON.stringify(row));
   }
   client.end();
-  res.end(output);
+  console.log(output);
 });
 
 }
