@@ -9,7 +9,7 @@ client.connect();
 
 module.exports.executequery= function(req,response){
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+client.query('SELECT * from test;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
