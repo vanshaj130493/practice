@@ -12,6 +12,8 @@ module.exports.executequery= function(query, callback){
 	var output = "";
 	client.query(query, (err, data) => {
 	  if (err) throw err;
+	  console.log("printing data");
+	  console.log(JSON.stringify(data.rows);
 	  for (let row of data.rows) {
 		output = output + (JSON.stringify(row));
 	  }
