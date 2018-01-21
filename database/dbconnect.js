@@ -5,8 +5,7 @@ const client = new Client({
   ssl: true,
 });
 
-module.exports.executequery= function(query){
-	
+module.exports.executequery= function(query){	
 	client.connect();
 
 	var output = "";
@@ -18,5 +17,4 @@ module.exports.executequery= function(query){
 	  client.end();
 	  return output;
 	});
-
 }
