@@ -1,3 +1,5 @@
+var path = require('path'); 
+
 var db = require(path.join(__dirname, "..", "database", "dbConnect.js"));
 
 module.exports.checkItem= function(name, quantity){
