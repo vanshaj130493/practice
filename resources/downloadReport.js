@@ -9,6 +9,7 @@ module.exports.execute= function(req,res){
 	console.log("Request Received");
 	db.getKitchenTable(function(data){
 		console.log(data);
+		data = JSON.parse(data);
 		
 		var csvStream = csv.format({headers: true}),
 		writableStream = fs.createWriteStream("report.csv");
