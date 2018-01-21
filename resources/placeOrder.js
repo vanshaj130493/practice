@@ -12,6 +12,8 @@ module.exports.execute= function(req,res){
 		console.log(flag);
 		if(flag == false)
 			db.insertItem(name,quantity);
+		else
+			db.addQuantity(name,quantity);
 		res.end("Order Placed !!");
 	});
 }
