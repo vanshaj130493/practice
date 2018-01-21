@@ -10,5 +10,4 @@ module.exports.execute= function(req,res){
 	console.log(name + " :: " + predictedValue);
 	db.updatePredicted(name,predictedValue);
 	res.end("Predicted Value set successfully !!");
-	});
 }
