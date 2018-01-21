@@ -64,6 +64,10 @@ var service = 'https://quiet-thicket-68407.herokuapp.com/getKitchenDisplay';
 
 $(document).ready(function(){
 
+	setTimeout(function(){
+	   $( "#location" ).load("index.html");
+	}, 3000);
+
     jQuery.support.cors = true;
 
     $.ajax(
@@ -93,11 +97,6 @@ $(document).ready(function(){
     });
 })
 
-</script>
-<script>
-setTimeout(function(){
-   $( "#location" ).load("index.html");
-}, 3000);
 </script>
 
 </body>
