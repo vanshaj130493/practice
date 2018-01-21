@@ -3,7 +3,7 @@ var path = require('path');
 var db = require(path.join(__dirname, "dbconnect.js"));
 
 module.exports.checkItem= function(name, quantity, callback){
-	var query = "select name from kitchen where name = '" + name + "' and quantity = " + quantity + ";";
+	var query = "select * from kitchen where name = '" + name + "' and quantity = " + quantity + ";";
 	console.log(query);
 	db.executequery(query, function(res){
 		console.log(res);
