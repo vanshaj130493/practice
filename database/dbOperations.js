@@ -7,7 +7,7 @@ module.exports.checkItem= function(name, quantity, callback){
 	console.log(query);
 	db.executequery(query, function(res){
 		console.log(res);
-		if (res == undefined || res == "" || res == null)
+		if (res == '[]')
 			callback(false);
 		else
 			callback(true);
