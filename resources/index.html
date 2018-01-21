@@ -10,21 +10,8 @@
 
 <body>
 
-<div id="autoloadin">
-
 <table class="cinereousTable" id="location">
-<thead>
-<tr>
-<th>Name</th>
-<th>Quantity</th>
-<th>Created-till-now</th>
-<th>Predicted</th>
-<th>Done Button</th>
-</tr>
-</thead>
 </table>
-
-</div>
 
 <style>
 table.cinereousTable {
@@ -82,7 +69,7 @@ function callApiForTableData() {
         cache: false,
         success: function (data) {
             
-        var trHTML = '';
+        var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead>';
 
 		$.each(data, function (i, item) {
 			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td>' + data[i].id + '</td></tr>';
