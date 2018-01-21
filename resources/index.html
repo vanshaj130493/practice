@@ -72,7 +72,7 @@ function callApiForTableData() {
         var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead>';
 
 		$.each(data, function (i, item) {
-			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td><button type="submit" onclick="callDoneButtonAPI("' + data[i].name + '")">DONE</button></td></tr>';
+			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td><button type="submit" onclick="callDoneButtonAPI(' + data[i].name + ')">DONE</button></td></tr>';
 		});
 
 		$('#location').html(trHTML);
