@@ -7,8 +7,8 @@ var db = require(path.join(__dirname, "..", "database", "dbOperations.js"));
 module.exports.execute= function(req,res){
 	
 	console.log("Request Received");
-	db.getKitchenTable(function(json_data){
-		console.log(json_data);
+	db.getKitchenTable(function(data){
+		console.log(data);
 		
 		var csvStream = csv.format({headers: true}),
 		writableStream = fs.createWriteStream("report.csv");
@@ -21,9 +21,9 @@ module.exports.execute= function(req,res){
 		});
 		
 		csvStream.pipe(writableStream);
-		for(data in json_data)
+		for(var i=0; i<data.length; i++)
 		{
-			csvStream.write({"Dish Name": data.name, "Produced": data.created_till_now, "Predicted": data.predicted});
+			csvStream.write({"Dish Name": data[i].name, "Produced": data[i].created_till_now, "Predicted": data[i].predicted});
 		}
 		csvStream.end();
 	});
