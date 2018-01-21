@@ -5,18 +5,18 @@ const client = new Client({
   ssl: true,
 });
 
-client.connect();
-
 module.exports.executequery= function(query){
+	
+	client.connect();
 
-var output = "";
-client.query(query, (err, data) => {
-  if (err) throw err;
-  for (let row of data.rows) {
-    output = output + (JSON.stringify(row));
-  }
-  client.end();
-  return output;
-});
+	var output = "";
+	client.query(query, (err, data) => {
+	  if (err) throw err;
+	  for (let row of data.rows) {
+		output = output + (JSON.stringify(row));
+	  }
+	  client.end();
+	  return output;
+	});
 
 }

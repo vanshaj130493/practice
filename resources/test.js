@@ -4,7 +4,7 @@ var db = require(path.join(__dirname, "..", "database", "dbconnect.js"));
 
 module.exports.execute= function(req,res){
 	console.log("Request Received");
-	output = db.executequery("select * from test");
+	var output = db.executequery("select * from test");
 	res.end(output);
 	return;
 }
