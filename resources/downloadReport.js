@@ -24,8 +24,6 @@ module.exports.execute= function(req,res){
 		csvStream.pipe(writableStream);
 		for(var i=0; i<data.length; i++)
 		{
-			console.log("WRITING CSV");
-			console.log(data[i]);
 			csvStream.write({"Dish Name": data[i].name, "Produced": data[i].created_till_now, "Predicted": data[i].predicted});
 		}
 		csvStream.end();
