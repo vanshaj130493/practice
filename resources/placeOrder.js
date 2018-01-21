@@ -7,9 +7,10 @@ module.exports.execute= function(req,res){
 	var name = req.body.itemName;
 	var quantity = req.body.quantity;
 	console.log(name + " :: " + quantity);
-	var flag = db.checkItem(name,quantity);
-	console.log(flag);
-	if(flag == false)
-		db.insertItem(name,quantity);
-	res.end("Order Placed !!");
+	db.checkItem(name,quantity, function(flag){
+		console.log(flag);
+		if(flag == false)
+			db.insertItem(name,quantity);
+		res.end("Order Placed !!");
+	});
 }

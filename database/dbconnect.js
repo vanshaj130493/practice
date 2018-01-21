@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 
-module.exports.executequery= function(query){	
+module.exports.executequery= function(query, callback){
 	
 	const client = new Client({
 	  connectionString: process.env.DATABASE_URL,
@@ -16,6 +16,6 @@ module.exports.executequery= function(query){
 		output = output + (JSON.stringify(row));
 	  }
 	  client.end();
-	  return output;
+	  callback(output);
 	});
 }
