@@ -47,7 +47,7 @@ module.exports.updateCreatedTillNow= function(name){
 }
 
 module.exports.getKitchenTable= function(callback){
-	var query = "select * from kitchen;";
+	var query = "select * from kitchen order by id;";
 	console.log(query);
 	db.executequery(query, function(res){
 		console.log(res);
