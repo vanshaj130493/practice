@@ -1,6 +1,6 @@
 var path = require('path'); 
 
-var db = require(path.join(__dirname, "..", "database", "dbConnect.js"));
+var db = require(path.join(__dirname, "dbConnect.js"));
 
 module.exports.checkItem= function(name, quantity){
 	var query = "select * from kitchen where name = '" + name + "' and quantity = " + quantity + ";";
