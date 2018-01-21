@@ -21,7 +21,7 @@ app.get("/test", test.execute);
 app.post("/placeOrder", placeOrder.execute);
 
 app.listen(process.env.PORT || 8080,function(){
-	console.log("Server started at port" + process.env.PORT || 8080);
+	console.log("Server started at port " + process.env.PORT || 8080);
 	});
 
 /*
