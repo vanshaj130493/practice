@@ -24,7 +24,7 @@ table.cinereousTable td, table.cinereousTable th {
   border: 1px solid #948473;
   padding: 4px 4px;
 }
-table.cinereousTable tr td {
+table.cinereousTable tbody td {
   font-size: 13px;
 }
 table.cinereousTable thead {
@@ -47,8 +47,8 @@ table.cinereousTable thead th:first-child {
 
 .button {
   display: inline-block;
-  padding: 10px 15px;
-  font-size: 15px;
+  padding: 8px 12px;
+  font-size: 10px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -91,12 +91,13 @@ function callApiForTableData() {
         cache: false,
         success: function (data) {
             
-        var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead>';
+        var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead><tbody>';
 
 		$.each(data, function (i, item) {
 			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td><button class="button" onclick="callDoneButtonAPI(\'' + data[i].name + '\')">DONE</button></td></tr>';
 		});
-
+		
+		trHTML += '</tbody>';
 		$('#location').html(trHTML);
         
         },
