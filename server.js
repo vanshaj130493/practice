@@ -9,6 +9,7 @@ var setPredictedValue = require(path.join(__dirname, "resources", "setPredictedV
 var doneButton = require(path.join(__dirname, "resources", "doneButton.js"));
 var getKitchenDisplay = require(path.join(__dirname, "resources", "getKitchenDisplay.js"));
 var KitchenDisplay = require(path.join(__dirname, "resources", "KitchenDisplay.js"));
+var downloadReport = require(path.join(__dirname, "resources", "downloadReport.js"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.post("/setPredictedValue", setPredictedValue.execute);
 app.post("/doneButton", doneButton.execute);
 app.get("/getKitchenDisplay", getKitchenDisplay.execute);
 app.get("/KitchenDisplay", KitchenDisplay.execute);
+app.get("/downloadReport", downloadReport.execute);
 
 app.listen(process.env.PORT || 8080,function(){
 	console.log("Server started at port " + process.env.PORT || 8080);
