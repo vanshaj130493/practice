@@ -88,7 +88,7 @@ function callApiForTableData() {
 			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td>' + data[i].id + '</td></tr>';
 		});
 
-		$('#location').append(trHTML);
+		$('#location').html(trHTML);
         
         },
         
