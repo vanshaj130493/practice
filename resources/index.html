@@ -63,13 +63,14 @@ table.cinereousTable thead th:first-child {
 
 <script>
 
-var service = 'https://quiet-thicket-68407.herokuapp.com/getKitchenDisplay';
-
 $(document).ready(function(){
+	setTimeout(callApiForTableData, 1000);
+});
 
-	setTimeout(function(){
+function callApiForTableData() {
 
     jQuery.support.cors = true;
+	var service = 'https://quiet-thicket-68407.herokuapp.com/getKitchenDisplay';
 
     $.ajax(
     {
@@ -96,8 +97,9 @@ $(document).ready(function(){
             alert(msg.responseText);
         }
     });
-	}, 3000);
-})
+	
+	setTimeout(callApiForTableData, 5000);
+}
 
 </script>
 
