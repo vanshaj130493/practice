@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path'); 
 
 var test = require(path.join(__dirname, "resources", "test.js"));
+var placeOrder = require(path.join(__dirname, "resources", "placeOrder.js"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,7 +17,8 @@ app.use(function (req, res, next) {
     next();
     });
 
-app.get("/test",test.execute);
+app.get("/test", test.execute);
+app.post("/placeOrder", placeOrder.execute);
 
 app.listen(process.env.PORT || 8080,function(){
 	console.log("Server started at port" + process.env.PORT || 8080);

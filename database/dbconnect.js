@@ -7,16 +7,16 @@ const client = new Client({
 
 client.connect();
 
-module.exports.executequery= function(req,res){
+module.exports.executequery= function(query){
 
-var output = "init";
-client.query("SELECT * from test where id='aaa';", (err, data) => {
+var output = "";
+client.query(query, (err, data) => {
   if (err) throw err;
   for (let row of data.rows) {
     output = output + (JSON.stringify(row));
   }
   client.end();
-  res.end(output);
+  return output;
 });
 
 }
