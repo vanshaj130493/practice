@@ -24,7 +24,7 @@ table.cinereousTable td, table.cinereousTable th {
   border: 1px solid #948473;
   padding: 4px 4px;
 }
-table.cinereousTable td {
+table.cinereousTable tr td {
   font-size: 13px;
 }
 table.cinereousTable thead {
@@ -89,11 +89,13 @@ function callApiForTableData() {
 }
 
 function callDoneButtonAPI(name) {
+	alert(name);
 	var json_data = '{	"itemName" : "' + name + '"}';
+	alert(json_data);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/doneButton", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+    xhttp.send(json_data);
 }
 </script>
 
