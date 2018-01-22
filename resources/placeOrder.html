@@ -130,11 +130,13 @@ function callApi() {
 	var name = document.getElementById("name").value;
 	var quantity = document.getElementById("quantity").value;
 	var json_data = '{	"itemName" : "' + name + '", "quantity" : ' + quantity + '}';
-	alert(json_data);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/placeOrder", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json_data);
+	alert("Order Placed !!");
+	document.getElementById("name").value = "";
+	document.getElementById("quantity").value = "";
 }
 
 function goToMainMenu() {
