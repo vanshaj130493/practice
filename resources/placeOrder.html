@@ -120,7 +120,7 @@ label {
         <button class="button" onclick="callApi()">Submit</button>
       </div>
       <div class="col-25">
-        <button class="button" onclick="document.location.href='https://quiet-thicket-68407.herokuapp.com/';">Main Menu</button>
+        <button class="button" onclick="document.location.href='https://quiet-thicket-68407.herokuapp.com';">Main Menu</button>
       </div>
     </div>
   </form>
@@ -129,7 +129,9 @@ label {
 <script>
 
 function callApi() {
-	alert($("#idForm").serialize());
+	var $form = $("#form_data");
+	var json_data = getFormData($form);
+	alert(JSON.stringify(json_data));
 
     jQuery.support.cors = true;
 	var service = 'https://quiet-thicket-68407.herokuapp.com/placeOrder';
@@ -138,7 +140,7 @@ function callApi() {
     {
         type: "POST",
         url: service,
-        data: JSON.stringify($("#idForm").serializeArray()),
+        data: JSON.stringify(json_data),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         cache: false,
@@ -154,12 +156,15 @@ function callApi() {
     });
 }
 
-function callDoneButtonAPI(name) {
-	var json_data = '{	"itemName" : "' + name + '"}';
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/doneButton", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(json_data);
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
 }
 </script>
 
