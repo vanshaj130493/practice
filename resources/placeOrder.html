@@ -94,7 +94,6 @@ label {
 <body>
 
 <div class="container">
-  <form id="idForm">
     <div class="row">
       <div class="col-25">
         <label for="name">Item Name</label>
@@ -120,23 +119,26 @@ label {
         <button class="button" onclick="callApi()">Submit</button>
       </div>
       <div class="col-25">
-        <button class="button" onclick="window.location.href='https://quiet-thicket-68407.herokuapp.com';">Main Menu</button>
+        <button class="button" onclick="goToMainMenu()">Main Menu</button>
       </div>
     </div>
-  </form>
 </div>
 
 <script>
 
 function callApi() {
 	var name = document.getElementById("name").value;
-	var name = document.getElementById("quantity").value;
+	var quantity = document.getElementById("quantity").value;
 	var json_data = '{	"itemName" : "' + name + '", "quantity" : ' + quantity + '}';
 	alert(json_data);
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/placeOrder", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json_data);
+}
+
+function goToMainMenu() {
+	document.location.href='https://quiet-thicket-68407.herokuapp.com';
 }
 </script>
 
