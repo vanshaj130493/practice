@@ -9,7 +9,6 @@ var placeOrder = require(path.join(__dirname, "resources", "placeOrder.js"));
 var setPredictedValue = require(path.join(__dirname, "resources", "setPredictedValue.js"));
 var doneButton = require(path.join(__dirname, "resources", "doneButton.js"));
 var getKitchenDisplay = require(path.join(__dirname, "resources", "getKitchenDisplay.js"));
-var KitchenDisplay = require(path.join(__dirname, "resources", "KitchenDisplay.js"));
 var downloadReport = require(path.join(__dirname, "resources", "downloadReport.js"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
