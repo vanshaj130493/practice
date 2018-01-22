@@ -2,7 +2,7 @@ var path = require('path');
 
 var db = require(path.join(__dirname, "dbconnect.js"));
 
-module.exports.checkItem= function(name, quantity, callback){
+module.exports.checkItem= function(name, callback){
 	var query = "select * from kitchen where name = '" + name + "';";
 	console.log(query);
 	db.executequery(query, function(res){
@@ -24,6 +24,14 @@ module.exports.insertItem= function(name, quantity){
 
 module.exports.addQuantity= function(name, quantity){
 	var query = "update kitchen set quantity = quantity + " + quantity + " where name = '" + name + "';";
+	console.log(query);
+	db.executequery(query, function(res){
+		console.log(res);
+	});
+}
+
+module.exports.insertItemByPredicted= function(name, predictedValue){
+	var query = "insert into kitchen (name, quantity, created_till_now, predicted) values ('" + name + "', 0, 0, " + predictedValue + ");";
 	console.log(query);
 	db.executequery(query, function(res){
 		console.log(res);

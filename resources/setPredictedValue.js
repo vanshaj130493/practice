@@ -8,6 +8,12 @@ module.exports.execute= function(req,res){
 	var name = req.body.itemName;
 	var predictedValue = req.body.predictedValue;
 	console.log(name + " :: " + predictedValue);
-	db.updatePredicted(name,predictedValue);
-	res.end("Predicted Value set successfully !!");
+	db.checkItem(name, function(flag){
+		console.log(flag);
+		if(flag == false)
+			db.insertItemByPredicted(name,predictedValue);
+		else
+			db.updatePredicted(name,predictedValue);
+		res.end("Predicted Value set successfully !!");
+	});
 }

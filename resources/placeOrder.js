@@ -8,7 +8,7 @@ module.exports.execute= function(req,res){
 	var name = req.body.itemName;
 	var quantity = req.body.quantity;
 	console.log(name + " :: " + quantity);
-	db.checkItem(name,quantity, function(flag){
+	db.checkItem(name, function(flag){
 		console.log(flag);
 		if(flag == false)
 			db.insertItem(name,quantity);
