@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Place Order</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</head>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+input[type=number], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+.button {
+  display: inline-block;
+  padding: 18px 50;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #555555;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  float: right;
+}
+
+.button:hover {background-color: #333333}
+
+.button:active {
+  background-color: #333333;
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+</style>
+<body>
+
+<div class="container">
+  <form action="">
+    <div class="row">
+      <div class="col-25">
+        <label for="name">Item Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="name" name="name" maxlength="30" placeholder="Item name..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="quantity">Quantity</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="quantity" name="quantity" maxlength="8" placeholder="Quantity.." min="0" max="99999999">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-25">
+      </div>
+      <div class="col-25">
+        <button class="button" onclick="">Submit</button>
+      </div>
+      <div class="col-25">
+        <button class="button" onclick="">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+
+$(document).ready(function(){
+	setTimeout(callApiForTableData, 1000);
+});
+
+function callApiForTableData() {
+
+    jQuery.support.cors = true;
+	var service = 'https://quiet-thicket-68407.herokuapp.com/getKitchenDisplay';
+
+    $.ajax(
+    {
+        type: "GET",
+        url: service,
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+            
+        var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead><tbody>';
+
+		$.each(data, function (i, item) {
+			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td><button class="button" onclick="callDoneButtonAPI(\'' + data[i].name + '\')">DONE</button></td></tr>';
+		});
+		
+		trHTML += '</tbody>';
+		$('#location').html(trHTML);
+        
+        },
+        
+        error: function (msg) {
+            
+            alert(msg.responseText);
+        }
+    });
+	
+	setTimeout(callApiForTableData, 3000);
+}
+
+function callDoneButtonAPI(name) {
+	var json_data = '{	"itemName" : "' + name + '"}';
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/doneButton", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(json_data);
+}
+</script>
+
+</body>
+</html>
