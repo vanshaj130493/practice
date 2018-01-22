@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Place Order</title>
+<title>Set Predicted Value</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -94,7 +94,6 @@ label {
 <body>
 
 <div class="container">
-  <form action="">
     <div class="row">
       <div class="col-25">
         <label for="name">Item Name</label>
@@ -105,10 +104,10 @@ label {
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="quantity">Quantity</label>
+        <label for="quantity">Predicted Value</label>
       </div>
       <div class="col-75">
-        <input type="number" id="quantity" name="quantity" maxlength="8" placeholder="Quantity.." min="0" max="99999999">
+        <input type="number" id="predictedValue" name="predictedValue" maxlength="8" placeholder="Predicted Value.." min="0" max="99999999">
       </div>
     </div>
     <div class="row">
@@ -117,62 +116,31 @@ label {
       <div class="col-25">
       </div>
       <div class="col-25">
-        <button class="button" onclick="">Submit</button>
+        <button class="button" onclick="callApi()">Submit</button>
       </div>
       <div class="col-25">
-        <button class="button" onclick="">Submit</button>
+        <button class="button" onclick="goToMainMenu()">Main Menu</button>
       </div>
     </div>
-  </form>
 </div>
 
 <script>
 
-$(document).ready(function(){
-	setTimeout(callApiForTableData, 1000);
-});
-
-function callApiForTableData() {
-
-    jQuery.support.cors = true;
-	var service = 'https://quiet-thicket-68407.herokuapp.com/getKitchenDisplay';
-
-    $.ajax(
-    {
-        type: "GET",
-        url: service,
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-            
-        var trHTML = '<thead><tr><th>Name</th><th>Quantity</th><th>Created-till-now</th><th>Predicted</th><th>Done Button</th></tr></thead><tbody>';
-
-		$.each(data, function (i, item) {
-			trHTML += '<tr><td>' + data[i].name + '</td><td>' + data[i].quantity + '</td><td>' + data[i].created_till_now + '</td><td>' + data[i].predicted + '</td><td><button class="button" onclick="callDoneButtonAPI(\'' + data[i].name + '\')">DONE</button></td></tr>';
-		});
-		
-		trHTML += '</tbody>';
-		$('#location').html(trHTML);
-        
-        },
-        
-        error: function (msg) {
-            
-            alert(msg.responseText);
-        }
-    });
-	
-	setTimeout(callApiForTableData, 3000);
-}
-
-function callDoneButtonAPI(name) {
-	var json_data = '{	"itemName" : "' + name + '"}';
+function callApi() {
+	var name = document.getElementById("name").value;
+	var predictedValue = document.getElementById("predictedValue").value;
+	var json_data = '{	"itemName" : "' + name + '", "predictedValue" : ' + predictedValue + '}';
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/doneButton", true);
+    xhttp.open("POST", "https://quiet-thicket-68407.herokuapp.com/setPredictedValue", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(json_data);
+	alert("Predicted Value set successfully !!");
+	document.getElementById("name").value = "";
+	document.getElementById("predictedValue").value = "";
+}
+
+function goToMainMenu() {
+	document.location.href='https://quiet-thicket-68407.herokuapp.com';
 }
 </script>
 
