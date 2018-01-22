@@ -120,7 +120,7 @@ label {
         <button class="button" onclick="callApi()">Submit</button>
       </div>
       <div class="col-25">
-        <button class="button" onclick="document.location.href='';">Main Menu</button>
+        <button class="button" onclick="document.location.href='https://quiet-thicket-68407.herokuapp.com/';">Main Menu</button>
       </div>
     </div>
   </form>
@@ -138,7 +138,7 @@ function callApi() {
     {
         type: "POST",
         url: service,
-        data: $("#idForm").serialize(),
+        data: JSON.stringify($("#idForm").serializeArray()),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         cache: false,
