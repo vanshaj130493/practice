@@ -21,5 +21,5 @@ module.exports.setPredictedValue= function(req,res){
 module.exports.KitchenDisplay= function(req,res){
 	
 	console.log("Request Received");
-	res.sendFile(path.join(__dirname, 'KitchenDisplay.html'));
+	res.sendFile(path.join(__dirname, 'index.html'));
 }
